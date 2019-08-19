@@ -1,4 +1,4 @@
-package stackjava.com.sbjwt;
+package sample.com.sbjwt;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

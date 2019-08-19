@@ -1,5 +1,5 @@
 
-package stackjava.com.sbjwt.rest;
+package sample.com.sbjwt.rest;
 
 import java.io.IOException;
 
@@ -17,8 +17,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 
-import stackjava.com.sbjwt.service.JwtService;
-import stackjava.com.sbjwt.service.UserService;
+import sample.com.sbjwt.entities.UserEntity;
+import sample.com.sbjwt.service.JwtService;
+import sample.com.sbjwt.service.UserService;
 
 public class JwtAuthenticationTokenFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -40,7 +41,7 @@ public class JwtAuthenticationTokenFilter extends UsernamePasswordAuthentication
 		if (jwtService.validateTokenLogin(authToken)) {
 			String username = jwtService.getUsernameFromToken(authToken);
 
-			stackjava.com.sbjwt.entities.User user = userService.loadUserByUsername(username);
+			UserEntity user = userService.loadUserByUsername(username);
 			if (user != null) {
 				boolean enabled = true;
 				boolean accountNonExpired = true;

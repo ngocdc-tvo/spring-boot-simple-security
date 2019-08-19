@@ -1,4 +1,4 @@
-package stackjava.com.sbjwt.rest;
+package sample.com.sbjwt.rest;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package stackjava.com.sbjwt.config;
+package sample.com.sbjwt.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,9 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import stackjava.com.sbjwt.rest.CustomAccessDeniedHandler;
-import stackjava.com.sbjwt.rest.JwtAuthenticationTokenFilter;
-import stackjava.com.sbjwt.rest.RestAuthenticationEntryPoint;
+import sample.com.sbjwt.rest.CustomAccessDeniedHandler;
+import sample.com.sbjwt.rest.JwtAuthenticationTokenFilter;
+import sample.com.sbjwt.rest.RestAuthenticationEntryPoint;
 
 @Configuration
 @EnableWebSecurity

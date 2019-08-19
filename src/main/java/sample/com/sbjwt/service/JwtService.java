@@ -1,4 +1,4 @@
-package stackjava.com.sbjwt.service;
+package sample.com.sbjwt.service;
 
 import java.util.Date;
 

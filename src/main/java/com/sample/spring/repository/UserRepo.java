@@ -1,7 +1,7 @@
-package com.sample.spring_security.repository;
+package com.sample.spring.repository;
 
+import com.sample.spring.entities.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.sample.spring_security.entities.UserEntity;
 
 public interface UserRepo extends JpaRepository<UserEntity, Integer> {
 }

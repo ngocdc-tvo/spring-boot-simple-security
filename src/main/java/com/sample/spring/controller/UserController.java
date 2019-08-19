@@ -1,35 +1,33 @@
-package com.sample.spring_security.controller;
+package com.sample.spring.controller;
 
+import com.sample.spring.dto.res.UserResDto;
+import com.sample.spring.entities.UserEntity;
+import com.sample.spring.service.JwtService;
+import com.sample.spring.service.UserService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.sample.spring_security.dto.res.UserResDto;
-import com.sample.spring_security.entities.UserEntity;
-import com.sample.spring_security.service.JwtService;
-import com.sample.spring_security.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 @RestController
 @RequestMapping("/rest")
-public class UserRestController {
+public class UserController {
 
 	private final JwtService jwtService;
 
 	private final UserService userService;
 
-	public UserRestController(JwtService jwtService, UserService userService) {
+	public UserController(JwtService jwtService, UserService userService) {
 		this.jwtService = jwtService;
 		this.userService = userService;
 	}
 
 	/* ---------------- GET ALL USER ------------------------ */
-	@RequestMapping(value = "/users", method = RequestMethod.GET)
+	@GetMapping(value = "/users")
 	public ResponseEntity<List<UserResDto>> getAllUser() {
 		ModelMapper m = new ModelMapper();
 		return new ResponseEntity<>(
@@ -37,7 +35,7 @@ public class UserRestController {
 	}
 
 	/* ---------------- GET USER BY ID ------------------------ */
-	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+	@GetMapping(value = "/users/{id}")
 	public ResponseEntity<Object> getUserById(@PathVariable int id) {
 		ModelMapper m = new ModelMapper();
 		UserEntity user = userService.findById(id);
@@ -47,10 +45,10 @@ public class UserRestController {
 		return new ResponseEntity<>("Not Found UserEntity", HttpStatus.NO_CONTENT);
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@PostMapping(value = "/login")
 	public ResponseEntity<String> login(HttpServletRequest request, @RequestBody UserEntity user) {
-		String result = "";
-		HttpStatus httpStatus = null;
+		String result;
+		HttpStatus httpStatus;
 		try {
 			if (userService.checkLogin(user)) {
 				result = jwtService.generateTokenLogin(user.getUsername());

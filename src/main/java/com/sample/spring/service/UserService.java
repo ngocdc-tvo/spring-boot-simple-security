@@ -1,9 +1,9 @@
-package com.sample.spring_security.service;
+package com.sample.spring.service;
 
+import com.sample.spring.entities.UserEntity;
+import com.sample.spring.repository.UserRepo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
-import com.sample.spring_security.entities.UserEntity;
-import com.sample.spring_security.repository.UserRepo;
 
 import java.util.List;
 

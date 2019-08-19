@@ -1,4 +1,4 @@
-package com.sample.spring_security;
+package com.sample.spring;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

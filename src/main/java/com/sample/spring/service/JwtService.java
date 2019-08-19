@@ -1,8 +1,4 @@
-package com.sample.spring_security.service;
-
-import java.util.Date;
-
-import org.springframework.stereotype.Service;
+package com.sample.spring.service;
 
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.JWSHeader;
@@ -12,6 +8,9 @@ import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jose.crypto.MACVerifier;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 @Service
 public class JwtService {

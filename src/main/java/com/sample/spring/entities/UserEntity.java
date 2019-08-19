@@ -1,4 +1,4 @@
-package com.sample.spring_security.entities;
+package com.sample.spring.entities;
 
 import lombok.Getter;
 import lombok.Setter;

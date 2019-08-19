@@ -1,9 +1,9 @@
-package sample.com.sbjwt.service;
+package com.sample.spring_security.service;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
-import sample.com.sbjwt.entities.UserEntity;
-import sample.com.sbjwt.repository.UserRepo;
+import com.sample.spring_security.entities.UserEntity;
+import com.sample.spring_security.repository.UserRepo;
 
 import java.util.List;
 

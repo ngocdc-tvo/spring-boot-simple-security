@@ -1,4 +1,4 @@
-package sample.com.sbjwt.rest;
+package com.sample.spring_security.rest;
 
 import java.io.IOException;
 

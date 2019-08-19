@@ -1,4 +1,4 @@
-package sample.com.sbjwt.config;
+package com.sample.spring_security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,9 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import sample.com.sbjwt.rest.CustomAccessDeniedHandler;
-import sample.com.sbjwt.rest.JwtAuthenticationTokenFilter;
-import sample.com.sbjwt.rest.RestAuthenticationEntryPoint;
+import com.sample.spring_security.rest.CustomAccessDeniedHandler;
+import com.sample.spring_security.rest.JwtAuthenticationTokenFilter;
+import com.sample.spring_security.rest.RestAuthenticationEntryPoint;
 
 @Configuration
 @EnableWebSecurity
@@ -49,10 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.antMatcher("/rest/**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers(HttpMethod.GET, "/rest/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
-				.antMatchers(HttpMethod.POST, "/rest/**").access("hasRole('ROLE_ADMIN')")
-				.antMatchers(HttpMethod.DELETE, "/rest/**").access("hasRole('ROLE_ADMIN')").and()
-				.addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+				.antMatchers(HttpMethod.GET, "/rest/users").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+				.antMatchers(HttpMethod.GET, "/rest/users/**").access("hasRole('ROLE_ADMIN')")
+				.and().addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
 				.exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
 	}
 }

@@ -1,4 +1,4 @@
-package sample.com.sbjwt.service;
+package com.sample.spring_security.service;
 
 import java.util.Date;
 

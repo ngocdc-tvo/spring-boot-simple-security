@@ -1,8 +1,9 @@
-package com.sample.spring.service;
+package com.sample.spring.service.impl;
 
 import com.sample.spring.dto.res.UserResDto;
-import com.sample.spring.entities.UserEntity;
+import com.sample.spring.entity.UserEntity;
 import com.sample.spring.repository.UserRepo;
+import com.sample.spring.service.UserService;
 import com.sample.spring.utils.ModelMapperUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 	private final UserRepo userRepo;
 

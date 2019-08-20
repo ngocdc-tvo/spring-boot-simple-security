@@ -1,7 +1,7 @@
 package com.sample.spring.service;
 
 import com.sample.spring.dto.res.UserResDto;
-import com.sample.spring.entities.UserEntity;
+import com.sample.spring.entity.UserEntity;
 
 import java.util.List;
 

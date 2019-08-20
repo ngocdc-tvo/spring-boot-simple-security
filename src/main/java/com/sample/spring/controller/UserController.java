@@ -1,18 +1,15 @@
 package com.sample.spring.controller;
 
 import com.sample.spring.dto.res.UserResDto;
-import com.sample.spring.entities.UserEntity;
+import com.sample.spring.entity.UserEntity;
 import com.sample.spring.security.JwtService;
 import com.sample.spring.service.UserService;
-import com.sample.spring.service.UserServiceImpl;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/user")

@@ -2,8 +2,9 @@ package com.sample.spring.controller;
 
 import com.sample.spring.dto.res.UserResDto;
 import com.sample.spring.entities.UserEntity;
-import com.sample.spring.service.JwtService;
+import com.sample.spring.security.JwtService;
 import com.sample.spring.service.UserService;
+import com.sample.spring.service.UserServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("/user")
 public class UserController {
 
 	private final JwtService jwtService;
@@ -26,23 +27,14 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	/* ---------------- GET ALL USER ------------------------ */
-	@GetMapping(value = "/users")
+	@GetMapping(value = "/list")
 	public ResponseEntity<List<UserResDto>> getAllUser() {
-		ModelMapper m = new ModelMapper();
-		return new ResponseEntity<>(
-				userService.findAll().stream().map(u -> m.map(u, UserResDto.class)).collect(Collectors.toList()), HttpStatus.OK);
+		return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
 	}
 
-	/* ---------------- GET USER BY ID ------------------------ */
-	@GetMapping(value = "/users/{id}")
-	public ResponseEntity<Object> getUserById(@PathVariable int id) {
-		ModelMapper m = new ModelMapper();
-		UserEntity user = userService.findById(id);
-		if (user != null) {
-			return new ResponseEntity<>(m.map(user, UserResDto.class), HttpStatus.OK);
-		}
-		return new ResponseEntity<>("Not Found UserEntity", HttpStatus.NO_CONTENT);
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<UserResDto> getUserById(@PathVariable int id) {
+		return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/login")

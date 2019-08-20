@@ -2,8 +2,8 @@
 package com.sample.spring.security;
 
 import com.sample.spring.entities.UserEntity;
-import com.sample.spring.service.JwtService;
 import com.sample.spring.service.UserService;
+import com.sample.spring.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;

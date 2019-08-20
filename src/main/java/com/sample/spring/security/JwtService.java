@@ -1,4 +1,4 @@
-package com.sample.spring.service;
+package com.sample.spring.security;
 
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.JWSHeader;
@@ -17,7 +17,7 @@ public class JwtService {
 
 	public static final String USERNAME = "username";
 	public static final String SECRET_KEY = "11111111111111111111111111111111";
-	public static final int EXPIRE_TIME = 20000;
+	public static final int EXPIRE_TIME = 30_000;
 
 	public String generateTokenLogin(String username) {
 		String token = null;

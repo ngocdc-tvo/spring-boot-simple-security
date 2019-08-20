@@ -1,4 +1,4 @@
-package com.sample.spring.config;
+package com.sample.spring.security;
 
 import com.sample.spring.security.CustomAccessDeniedHandler;
 import com.sample.spring.security.JwtAuthenticationTokenFilter;
@@ -41,15 +41,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	protected void configure(HttpSecurity http) throws Exception {
-		// Disable crsf cho đường dẫn /rest/**
-		http.csrf().ignoringAntMatchers("/rest/**");
-
-		http.authorizeRequests().antMatchers("/rest/login**").permitAll();
-
-		http.antMatcher("/rest/**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
+		// Disable crsf cho đường dẫn /**
+		http.csrf().ignoringAntMatchers("/**");
+		// Luôn cho phép truy cập vào /user/login**
+		http.authorizeRequests().antMatchers("/user/login**").permitAll();
+		// Authorization cho role
+		http.antMatcher("/**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers(HttpMethod.GET, "/rest/users").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
-				.antMatchers(HttpMethod.GET, "/rest/users/**").access("hasRole('ROLE_ADMIN')")
+				.antMatchers(HttpMethod.GET, "/address/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+				.antMatchers(HttpMethod.GET, "/user/**").access("hasRole('ROLE_ADMIN')")
 				.and().addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
 				.exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
 	}

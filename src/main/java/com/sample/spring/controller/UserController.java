@@ -1,5 +1,6 @@
 package com.sample.spring.controller;
 
+import com.sample.spring.dto.res.TokenResDto;
 import com.sample.spring.dto.res.UserResDto;
 import com.sample.spring.entity.UserEntity;
 import com.sample.spring.security.JwtService;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -35,7 +37,10 @@ public class UserController {
 	}
 
 	@PostMapping(value = "/login")
-	public ResponseEntity<String> login(HttpServletRequest request, @RequestBody UserEntity user) {
+	public ResponseEntity<TokenResDto> login(HttpServletRequest request, @RequestBody UserEntity user) {
+		LocalDateTime now = LocalDateTime.now();
+		TokenResDto tokenResDto = new TokenResDto();
+
 		String result;
 		HttpStatus httpStatus;
 		try {
@@ -50,7 +55,10 @@ public class UserController {
 			result = "Server Error";
 			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
-		return new ResponseEntity<>(result, httpStatus);
+
+		tokenResDto.setToken(result);
+		tokenResDto.setTime(now);
+		return new ResponseEntity<>(tokenResDto, httpStatus);
 	}
 
 }

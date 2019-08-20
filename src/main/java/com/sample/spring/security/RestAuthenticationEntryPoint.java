@@ -1,5 +1,6 @@
 package com.sample.spring.security;
 
+import com.google.gson.JsonObject;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 
@@ -11,7 +12,9 @@ public final class RestAuthenticationEntryPoint implements AuthenticationEntryPo
 
     public void commence(HttpServletRequest request, HttpServletResponse response,
                          AuthenticationException authException) throws IOException {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("message", "Unauthorized!");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.getWriter().write("Unauthorized");
+        response.getWriter().write(jsonObject.toString());
     }
 }
